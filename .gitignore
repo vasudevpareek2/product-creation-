@@ -51,8 +51,12 @@ uploads/
 *.xlsx
 *.xls
 *.csv
-*.json
 !uploads/.gitkeep
+
+# Important config files
+!frontend-new/package.json
+!frontend-new/package-lock.json
+!frontend-new/tsconfig.json
 
 # Temporary files
 *.tmp
