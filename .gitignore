@@ -52,8 +52,10 @@ uploads/
 *.xls
 *.csv
 !uploads/.gitkeep
-!backend/uploads/
-!backend/logs/
+!backend/uploads/.gitkeep
+!backend/logs/.gitkeep
+!backend/config/.gitkeep
+!backend/config/
 
 # Important config files
 !frontend-new/package.json
