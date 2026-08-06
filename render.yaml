@@ -1,0 +1,31 @@
+services:
+  # Backend Service - FastAPI
+  - type: web
+    name: product-creation-backend
+    runtime: python
+    plan: free
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python start_backend.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9
+      - key: PORT
+        value: 8000
+    region: oregon
+    healthCheckPath: /docs
+
+  # Frontend Service - Next.js
+  - type: web
+    name: product-creation-frontend
+    runtime: node
+    plan: free
+    buildCommand: cd frontend-new && npm install && npm run build
+    startCommand: cd frontend-new && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 3000
+      - key: NEXT_PUBLIC_API_URL
+        value: https://product-creation-backend.onrender.com
+    region: oregon
