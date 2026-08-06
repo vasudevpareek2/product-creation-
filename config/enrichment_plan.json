@@ -1,0 +1,528 @@
+{
+  "products": {
+    "PRDXL61yYbgpe": {
+      "old_name": "Kovalam Sightseeng",
+      "new_name": "Kovalam Sightseeing Tour"
+    },
+    "PRDxJsZ7xnPUn": {
+      "old_name": "Kanniyakumari Sightseeing",
+      "new_name": "Kanyakumari Sightseeing Tour"
+    },
+    "PRDfoAhwgh62n": {
+      "old_name": "Rameshwaram Sightseeing",
+      "new_name": "Rameshwaram Sightseeing Tour"
+    },
+    "PRDbpOlkydMgY": {
+      "old_name": "Vagamon Sightseeing",
+      "new_name": "Vagamon Sightseeing Tour"
+    },
+    "PRDPmM5DQ0jbN": {
+      "old_name": "Kumarakom Sightseeing",
+      "new_name": "Kumarakom Sightseeing Tour"
+    },
+    "PRDpohtHBmctW": {
+      "old_name": "Cochin to Munnar Enroute Sightseeeing",
+      "new_name": "Journey from Kochi to Munnar"
+    },
+    "PRD5V436dnDmA": {
+      "old_name": "Munnar SightSeeng",
+      "new_name": "Munnar Sightseeing Tour"
+    },
+    "PRDRev8YUTMwB": {
+      "old_name": "Thekkady Sightseeing",
+      "new_name": "Thekkady Sightseeing Tour, Kerala"
+    },
+    "PRDB98WpqKJbc": {
+      "old_name": "Alleppey Sightseeing",
+      "new_name": "Alleppey Sightseeing Tour, Kerala"
+    },
+    "PRDJKPXRSkAd6": {
+      "old_name": "Varkala Sightseeng",
+      "new_name": "Varkala Sightseeing Tour, Kerala"
+    },
+    "PRDd1i4Th2ETo": {
+      "old_name": "Cochin sightseeing tour",
+      "new_name": "Cochin Sightseeing Tour"
+    }
+  },
+  "variants": [
+    {
+      "variant_id": "520256",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "Full Day Kovalam",
+      "new_name": "Full-Day Tour - Kovalam Beach + Hawa Beach + Light House Beach + Samudra Beach + Azhimala Shiva Temple",
+      "attraction_names": [
+        "Kovalam Beach",
+        "Hawa Beach",
+        "Light House Beach",
+        "Samudra Beach",
+        "Azhimala Shiva Temple"
+      ]
+    },
+    {
+      "variant_id": "520257",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "With jatayu Earth Center",
+      "new_name": "Visit to Jatayu Earth Center",
+      "attraction_names": [
+        "Jatayu Earth Center"
+      ]
+    },
+    {
+      "variant_id": "520258",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "Halfday Kovalam",
+      "new_name": "Half-Day Tour - Kovalam Beach + Azhimala Shiva Temple",
+      "attraction_names": [
+        "Kovalam Beach",
+        "Azhimala Shiva Temple"
+      ]
+    },
+    {
+      "variant_id": "520259",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "With Poovar island Excursion",
+      "new_name": "Full-Day Tour - Kovalam Beach + Hawa Beach + Light House Beach + Samudra Beach + Azhimala Shiva Temple + Poovar island Excursion",
+      "attraction_names": [
+        "Kovalam Beach",
+        "Hawa Beach",
+        "Light House Beach",
+        "Samudra Beach",
+        "Azhimala Shiva Temple",
+        "Poovar island Excursion"
+      ]
+    },
+    {
+      "variant_id": "520260",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "With Kanniyakumari Excursion",
+      "new_name": "Full-Day Tour - Kovalam Beach + Hawa Beach + Light House Beach + Samudra Beach + Azhimala Shiva Temple + Kannyakumari Excursion",
+      "attraction_names": [
+        "Kovalam Beach",
+        "Hawa Beach",
+        "Light House Beach",
+        "Samudra Beach",
+        "Azhimala Shiva Temple",
+        "Kanniyakumari Excursion"
+      ]
+    },
+    {
+      "variant_id": "520261",
+      "product_code": "PRDXL61yYbgpe",
+      "old_name": "With Trivandrum Excursion",
+      "new_name": "Full-Day Tour - Kovalam Beach + Hawa Beach + Light House Beach + Samudra Beach + Azhimala Shiva Temple + Trivandrum Excursion",
+      "attraction_names": [
+        "Kovalam Beach",
+        "Hawa Beach",
+        "Light House Beach",
+        "Samudra Beach",
+        "Azhimala Shiva Temple",
+        "Trivandrum Excursion"
+      ]
+    },
+    {
+      "variant_id": "520262",
+      "product_code": "PRDxJsZ7xnPUn",
+      "old_name": "Full Day | Kanniyakumari",
+      "new_name": "Full-Day Tour - Vivekananda Rock Memorial + Thiruvalluvar Statue + Kumari Amman Temple",
+      "attraction_names": [
+        "Vivekananda Rock Memorial",
+        "Thiruvalluvar Statue",
+        "Kumari Amman Temple"
+      ]
+    },
+    {
+      "variant_id": "520263",
+      "product_code": "PRDxJsZ7xnPUn",
+      "old_name": "Halfday Kanniyakumari",
+      "new_name": "Half Day Tour - Vivekananda Rock Memorial + Kumari Amman Temple",
+      "attraction_names": [
+        "Vivekananda Rock Memorial",
+        "Kumari Amman Temple"
+      ]
+    },
+    {
+      "variant_id": "520264",
+      "product_code": "PRDfoAhwgh62n",
+      "old_name": "Full Day Rameshwaram",
+      "new_name": "Full-Day Tour",
+      "attraction_names": [
+        "Agniteertham",
+        "Gandhamadhana Parvatham",
+        "Dhanushkodi",
+        "Annai Indira Gandhi Road Bridge Pamb",
+        "Sri Ramanathaswamy Temple"
+      ]
+    },
+    {
+      "variant_id": "520265",
+      "product_code": "PRDfoAhwgh62n",
+      "old_name": "Halfday Rameshwaram",
+      "new_name": "Half Day Tour - Agniteertham + Dhanushkodi",
+      "attraction_names": [
+        "Agniteertham",
+        "Dhanushkodi"
+      ]
+    },
+    {
+      "variant_id": "520266",
+      "product_code": "PRDbpOlkydMgY",
+      "old_name": "Full Day Vagamon",
+      "new_name": "Pattumalai Church + Vagamon Pine Forest + Vagamon Lake + Vagamon Water Falls",
+      "attraction_names": [
+        "The Pattumalai Church",
+        "Vagamon Pine Forest",
+        "Vagamon Lake",
+        "Vagamon Water Falls"
+      ]
+    },
+    {
+      "variant_id": "520267",
+      "product_code": "PRDbpOlkydMgY",
+      "old_name": "Halfday Vagamon",
+      "new_name": "Vagamon Pine Forest + Vagamon Lake",
+      "attraction_names": [
+        "Vagamon Pine Forest",
+        "Vagamon Lake"
+      ]
+    },
+    {
+      "variant_id": "520268",
+      "product_code": "PRDPmM5DQ0jbN",
+      "old_name": "Kumarakom Sightseeing",
+      "new_name": "Vembanad Lake + Kumarakom Backwater",
+      "attraction_names": [
+        "Vembanad Lake",
+        "kumarakom Backwater"
+      ]
+    },
+    {
+      "variant_id": "520269",
+      "product_code": "PRDpohtHBmctW",
+      "old_name": "Limited Enroute Sightseeeing",
+      "new_name": "Enroute Sightseeing - Cheeyappara Waterfalls + Valara Waterfalls",
+      "attraction_names": [
+        "Cheeyappara Waterfalls",
+        "Valara Waterfalls"
+      ]
+    },
+    {
+      "variant_id": "520270",
+      "product_code": "PRDpohtHBmctW",
+      "old_name": "With Sadya Dish",
+      "new_name": "En-route Sightseeing with Sadya Dish (Lunch on Banana Leaf)",
+      "attraction_names": [
+        "Neriamangalam Bridge",
+        "Cheeyappara Waterfalls",
+        "Valara Waterfalls",
+        "Pottas Fun Farm",
+        "Sadya Dish (Lunch on Banana Leaf)"
+      ]
+    },
+    {
+      "variant_id": "520271",
+      "product_code": "PRDpohtHBmctW",
+      "old_name": "With Kathakali & Kalaripayattu martial art",
+      "new_name": "En-route Sightseeing + Kathakali & Kalaripayattu Martial Art Show",
+      "attraction_names": [
+        "Neriamangalam Bridge",
+        "Cheeyappara Waterfalls",
+        "Valara Waterfalls",
+        "Pottas Fun Farm",
+        "Kathakali & Kalaripayattu martial art"
+      ]
+    },
+    {
+      "variant_id": "520272",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "With Top Station",
+      "new_name": "Full-Day Tour + Top Station",
+      "attraction_names": [
+        "Tata Tea Museum",
+        "Kanan Devan Hill Plantation Tea Estate",
+        "Macofa Chocolate Factory",
+        "2nd Mile View Poi nt",
+        "Blossom Park",
+        "Carmelagiri Eleph ant Park",
+        "Mattupetty Dam",
+        "Echo Point",
+        "Kundala Lake",
+        "Top Station"
+      ]
+    },
+    {
+      "variant_id": "520273",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "With Munnar Jeep Safari for 3 H",
+      "new_name": "Full-Day Tour + Munnar Jeep Safari (3 Hrs)",
+      "attraction_names": [
+        "Tata Tea Museum",
+        "Kanan Devan Hill Plantation Tea Estate",
+        "Macofa Chocolate Factory",
+        "2nd Mile View Poi nt",
+        "Blossom Park",
+        "Carmelagiri Eleph ant Park",
+        "Mattupetty Dam",
+        "Muunar Jeep Safari (Munnar Town 4*4 Jeep)"
+      ]
+    },
+    {
+      "variant_id": "520274",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "Half Day Munnar",
+      "new_name": "Half-Day Tour",
+      "attraction_names": [
+        "Tata Tea Museum",
+        "Kanan Devan Hill Plantation Tea Estate",
+        "Macofa Chocolate Factory",
+        "2nd Mile View Poi nt",
+        "Blossom Park",
+        "Carmelagiri Eleph ant Park",
+        "Mattupetty Dam"
+      ]
+    },
+    {
+      "variant_id": "520275",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "With Ripple Waterfalls",
+      "new_name": "With Ripple Waterfalls Visit",
+      "attraction_names": [
+        "Ripple Waterfalls",
+        "Nadukani Viewpoint",
+        "Hanging Bridge Ponmudi",
+        "Dam & Dale Tourism Project",
+        "5, Gap Road"
+      ]
+    },
+    {
+      "variant_id": "520276",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "With Ripple Waterfalls with Jeep Safari",
+      "new_name": "With Ripple Waterfalls Visit + Jeep Safari",
+      "attraction_names": [
+        "Ripple Waterfalls Via 4*4 jeep safari",
+        "Nadukani Viewpoint",
+        "Hanging Bridge Ponmudi",
+        "Dam & Dale Tourism Project",
+        "5, Gap Road"
+      ]
+    },
+    {
+      "variant_id": "520277",
+      "product_code": "PRD5V436dnDmA",
+      "old_name": "With kolukkumalai Sunrise Trek Transfer + Jeep Safari",
+      "new_name": "With Kolukkumalai Sunrise Trek + Jeep Safari",
+      "attraction_names": [
+        "Tata Tea Museum",
+        "Kanan Devan Hill Plantation Tea Estate",
+        "Macofa Chocolate Factory",
+        "2nd Mile View Poi nt",
+        "Blossom Park",
+        "Carmelagiri Eleph ant Park",
+        "Mattupetty Dam",
+        "Echo Point",
+        "Pullu Medu Elepha nt View Point",
+        "Yellapatty Grassl and",
+        "Kundala Lake",
+        "12, kolukkumalai Sunrise Trek with PVT 4*4 jeep"
+      ]
+    },
+    {
+      "variant_id": "520278",
+      "product_code": "PRDRev8YUTMwB",
+      "old_name": "With Kathakali & Kalaripayattu martial art",
+      "new_name": "Full Day Tour - Periyar National Park + Periyar Lake + Elephant Junction + Spice Plantation Tour + Kathakali & Kalaripayattu Martial Art",
+      "attraction_names": [
+        "Periyar National Park",
+        "Periyar Lake",
+        "Elephant Junction",
+        "Spice Plantation Tour",
+        "Kathakali & Kalaripayattu martial art"
+      ]
+    },
+    {
+      "variant_id": "520279",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Super Deluxe PVT Day Cruise",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Super Deluxe Pvt Day Cruise",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Day Cruise"
+      ]
+    },
+    {
+      "variant_id": "520280",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Sharing Day Cruise",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Sharing Day Cruise",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Day Cruise"
+      ]
+    },
+    {
+      "variant_id": "520281",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Kayaking",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Kayaking",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Kayaking 1H"
+      ]
+    },
+    {
+      "variant_id": "520282",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Sharing Deluxe Housebaot 1 BHK",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Sharing Deluxe Houseboat (1 BHK)",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Sharing Housebaot"
+      ]
+    },
+    {
+      "variant_id": "520283",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Sharing Super Deluxe Housebaot 1 BHK",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Sharing Super-Deluxe Houseboat (1 BHK)",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Sharing Housebaot"
+      ]
+    },
+    {
+      "variant_id": "520284",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Sharing Deluxe Houseboat 2 BHK",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Sharing Deluxe Houseboat (2 BHK)",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Sharing Housebaot"
+      ]
+    },
+    {
+      "variant_id": "520285",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "With Sharing Super Deluxe Housebaot 2 BHK",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Sharing Super-Deluxe Houseboat (2 BHK)",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Sharing Housebaot"
+      ]
+    },
+    {
+      "variant_id": "520286",
+      "product_code": "PRDB98WpqKJbc",
+      "old_name": "Full day Sightseeing",
+      "new_name": "Alleppey Beach + Alleppey Lighthouse + Mullakkal Rajarajeswari Temple",
+      "attraction_names": [
+        "Alleppey Beach",
+        "Alleppey Lighthouse",
+        "Mullakkal Rajarajeswari Temple"
+      ]
+    },
+    {
+      "variant_id": "520287",
+      "product_code": "PRDJKPXRSkAd6",
+      "old_name": "Full Day varkala",
+      "new_name": "Full Day Tour - Jatayu Earth Center + Varkala Beach + Kappil Beach + Black Sand Beach",
+      "attraction_names": [
+        "Jatayu Earth Center",
+        "Varkala Beach",
+        "Kappil Beach",
+        "Black sand beach"
+      ]
+    },
+    {
+      "variant_id": "520288",
+      "product_code": "PRDJKPXRSkAd6",
+      "old_name": "With jatayu Earth Center",
+      "new_name": "Visit to Jatayu Earth Center",
+      "attraction_names": [
+        "Jatayu Earth Center"
+      ]
+    },
+    {
+      "variant_id": "520289",
+      "product_code": "PRDJKPXRSkAd6",
+      "old_name": "With Mangrove Village",
+      "new_name": "Half-Day Tour - Varkala Beach + Kappil Beach + Mangrove Village",
+      "attraction_names": [
+        "Varkala Beach",
+        "Kappil Beach",
+        "Mangrove Village"
+      ]
+    },
+    {
+      "variant_id": "520290",
+      "product_code": "PRDJKPXRSkAd6",
+      "old_name": "With Kanniyakumari Excursion",
+      "new_name": "Half-Day Tour - Varkala Beach + Kappil Beach + Kannyakumari Excursion",
+      "attraction_names": [
+        "Varkala Beach",
+        "Kappil Beach",
+        "Kanniyakumari Excursion"
+      ]
+    },
+    {
+      "variant_id": "520291",
+      "product_code": "PRDd1i4Th2ETo",
+      "old_name": "With guruvayoor",
+      "new_name": "Santa Cruz Cathedral Basilica + Chinese Fishing Nets + Fort Kochi + Church of Saint Francis + Guruvayoor Shri Krishna Temple",
+      "attraction_names": [
+        "Santa Cruz Cathedral Basilica",
+        "Chinese Fishing Nets",
+        "Fort Kochi",
+        "Church of Saint Francis",
+        "guruvayoor Shri Krishna Temple"
+      ]
+    },
+    {
+      "variant_id": "520292",
+      "product_code": "PRDd1i4Th2ETo",
+      "old_name": "Half day Cochin",
+      "new_name": "Half-Day Tour - Santa Cruz Cathedral Basilica + Chinese Fishing Nets + Fort Kochi + Church of Saint Francis",
+      "attraction_names": [
+        "Santa Cruz Cathedral Basilica",
+        "Chinese Fishing Nets",
+        "Fort Kochi",
+        "Church of Saint Francis"
+      ]
+    },
+    {
+      "variant_id": "520293",
+      "product_code": "PRDd1i4Th2ETo",
+      "old_name": "Full day Cochin",
+      "new_name": "Full-Day Tour",
+      "attraction_names": [
+        "Mattancherry Palace",
+        "Paradesi Synagogu e (Jewish Synagogue)",
+        "Santa Cruz Cathedral Basilica",
+        "Chinese Fishing Nets",
+        "Marine Drive Kochi",
+        "Fort Kochi",
+        "Church of Saint Francis"
+      ]
+    },
+    {
+      "variant_id": "520254",
+      "product_code": "PRDd1i4Th2ETo",
+      "old_name": "With cherai beach",
+      "new_name": "Santa Cruz Cathedral Basilica + Chinese Fishing Nets + Fort Kochi + Church of Saint Francis + Cherai Beach",
+      "attraction_names": [
+        "Santa Cruz Cathedral Basilica",
+        "Chinese Fishing Nets",
+        "Fort Kochi",
+        "Church of Saint Francis",
+        "Cherai Beach"
+      ]
+    }
+  ]
+}

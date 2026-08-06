@@ -17,12 +17,12 @@ class Settings(BaseSettings):
     # Application
     app_host: str = "0.0.0.0"
     app_port: int = 8000
-    cors_origins: str = "http://localhost:3000,http://localhost:3001"
+    cors_origins: str = "http://localhost:3000,http://localhost:3001,https://product-creation-frontend.onrender.com"
     
     # Directories
-    upload_dir: str = "../uploads"
-    config_dir: str = "../config"
-    log_dir: str = "../logs"
+    upload_dir: str = "uploads"
+    config_dir: str = "config"
+    log_dir: str = "logs"
     
     # Database
     database_url: str = "sqlite:///./app.db"

@@ -1,0 +1,93 @@
+{
+  "base_url": "https://admin.thrillophilia.com",
+  "client_id": "1",
+  "region_name": "Kerala",
+  "visibility_scopes": [
+    "public"
+  ],
+  "open_slots_until": "2026-12-31",
+  "required_inclusion_id": "placeholder",
+  "vendor_names": ["Sv Sky Blue Orchids", "Carrot Cruises Shipping P. Ltd", "GUIDELINE TRAVELS HOLIDAYS INDIA PRIVATE LIMITED HOLIDAY DIVISION"],
+  "reseller_partner_id": "4",
+  "inventory_id": "1",
+  "margin": 10,
+  "currency": "INR",
+  "policy_ids": {
+    "confirmation_policy_id": "20988",
+    "refund_policy_id": "20984",
+    "cancellation_policy_id": "20985",
+    "payment_term_policy_id": "1671"
+  },
+  "vendor_payment_term_policy_id": "2207",
+  "default_variant": {
+    "booking_type": "group",
+    "inventory_type": "pax",
+    "min_passenger_count": 1,
+    "transfer_inclusion": "Not Included",
+    "ticket_inclusion": "Not Ticketed",
+    "availability_sources": ["partner"],
+    "duration_type": "days_hours_minutes",
+    "duration_days": 1,
+    "duration_hours": 0,
+    "duration_minutes": 0
+  },
+  "booking_settings": {
+    "enable_send_enquiry": true,
+    "is_ticketed": "no",
+    "time_zone": "Asia/Kolkata",
+    "min_percentage_amount_to_confirm": 20
+  },
+  "seo_template": {
+    "meta_title": "{name} in Kerala",
+    "meta_description": "Experience {name} in Kerala",
+    "og_title": "{name} - Thrillophilia",
+    "og_description": "Book {name} in Kerala"
+  },
+  "existing_product_activity_overrides": {},
+  "destination_mappings": {
+    "Cochin": {
+      "destination_id": "5191",
+      "destination_name": "Cochin"
+    },
+    "Munnar": {
+      "destination_id": "5210",
+      "destination_name": "Munnar"
+    },
+    "Thekkady": {
+      "destination_id": "7035",
+      "destination_name": "Thekkady"
+    },
+    "Alleppey": {
+      "destination_id": "6879",
+      "destination_name": "Alleppey"
+    },
+    "Varkala": {
+      "destination_id": "6239",
+      "destination_name": "Varkala"
+    },
+    "Kovalam": {
+      "destination_id": "5205",
+      "destination_name": "Kovalam"
+    },
+    "Kanniyakumari": {
+      "destination_id": "6887",
+      "destination_name": "Kanniyakumari"
+    },
+    "Rameshwaram": {
+      "destination_id": "7040",
+      "destination_name": "Rameshwaram"
+    },
+    "Madurai": {
+      "destination_id": "5315",
+      "destination_name": "Madurai"
+    },
+    "Vagamon": {
+      "destination_id": "7042",
+      "destination_name": "Vagamon"
+    },
+    "Kumarakom": {
+      "destination_id": "6955",
+      "destination_name": "Kumarakom"
+    }
+  }
+}

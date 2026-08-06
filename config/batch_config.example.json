@@ -1,0 +1,54 @@
+{
+  "base_url": "https://admin.thrillophilia.com",
+  "client_id": "1",
+
+  "region_name": "Kerala Tours",
+  "visibility_scopes": ["ib_builder", "quotation"],
+  "open_slots_until": "2027-03-31",
+  "required_inclusion_id": 22,
+
+  "vendor_names": [
+    "Intersight tours and Travels Private Limited",
+    "Tropicalsouth Holidays",
+    "TravelNivriti"
+  ],
+  "reseller_partner_id": 2,
+  "inventory_id": 1,
+  "margin": 1.03,
+  "currency": "INR",
+  "policy_ids": {
+    "confirmation_policy_id": 20829,
+    "refund_policy_id": 20910,
+    "cancellation_policy_id": 20911,
+    "payment_term_policy_id": 20912
+  },
+  "vendor_payment_term_policy_id": 20809,
+
+  "default_variant": {
+    "booking_type": "private",
+    "inventory_type": "pax",
+    "min_passenger_count": 1,
+    "transfer_inclusion": "not_included",
+    "ticket_inclusion": "Not Ticketed"
+  },
+  "booking_settings": {
+    "enable_send_enquiry": true,
+    "enable_online_booking": null,
+    "is_ticketed": "no",
+    "time_zone": "Asia/Kolkata",
+    "min_percentage_amount_to_confirm": 100
+  },
+  "seo_template": {
+    "meta_title": "{name} | Book Now",
+    "meta_description": "Book {name} — a guided private-vehicle sightseeing experience. Reserve your spot today.",
+    "og_title": "{name}",
+    "og_description": "Explore {name} with a private vehicle and a guided tour of the top local attractions."
+  },
+  "existing_product_activity_overrides": {
+    "PRDpohtHBmctW": "Cochin to Munnar Enroute Sightseeeing",
+    "PRD5V436dnDmA": "Munnar SightSeeng",
+    "PRDRev8YUTMwB": "Thekkady Sightseeing",
+    "PRDB98WpqKJbc": "Alleppey Sightseeing",
+    "PRDJKPXRSkAd6": "Varkala Sightseeng"
+  }
+}
