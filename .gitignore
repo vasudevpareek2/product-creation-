@@ -57,6 +57,7 @@ uploads/
 !frontend-new/package.json
 !frontend-new/package-lock.json
 !frontend-new/tsconfig.json
+!frontend-new/src/lib
 
 # Temporary files
 *.tmp
