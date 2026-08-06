@@ -11,5 +11,5 @@ services:
       - key: PORT
         value: 3000
       - key: NEXT_PUBLIC_API_URL
-        value: https://product-creation-backend.onrender.com
+        value: https://product-creation-ou2z.onrender.com
     region: oregon
