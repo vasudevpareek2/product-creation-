@@ -349,6 +349,27 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             enrichment_plan = os.path.join(settings.upload_dir, "enrichment_plan.json")
             print(f"DEBUG: Enrichment plan path: {enrichment_plan}, exists: {os.path.exists(enrichment_plan)}")
             
+            # Check if enrichment plan exists
+            if not os.path.exists(enrichment_plan):
+                print(f"DEBUG: Enrichment plan not found, checking if Stage 1 had any successful products")
+                # Access stage1_results from the last execution
+                last_result = batch.get("results", {})
+                stage1_results = last_result.get("results", {}).get("stage1_results", []) if isinstance(last_result, dict) else []
+                successful_products = [r for r in stage1_results if r.get("status") == "completed" or r.get("url")]
+                
+                if not successful_products:
+                    print(f"DEBUG: No successful products in Stage 1, cannot proceed with Stage 2")
+                    raise HTTPException(
+                        status_code=400, 
+                        detail="Stage 2 cannot be executed because Stage 1 did not create any products successfully. All products failed with authentication errors (401). Please update your API token and retry Stage 1."
+                    )
+                else:
+                    print(f"DEBUG: Found {len(successful_products)} successful products, but enrichment plan missing")
+                    raise HTTPException(
+                        status_code=400,
+                        detail="Enrichment plan file not found. Please ensure Stage 1 completed successfully."
+                    )
+            
             # Update enrichment plan with actual product codes from Stage 1 results
             try:
                 stage1_results = batch.get("stage1_results", [])
