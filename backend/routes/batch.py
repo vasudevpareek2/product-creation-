@@ -162,13 +162,15 @@ async def get_batch(batch_id: str):
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
     print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
+    print(f"DEBUG: Available batches: {list(batches.keys())}")
     
     if batch_id not in batches:
         print(f"DEBUG: Batch {batch_id} not found in batches")
-        raise HTTPException(status_code=404, detail="Batch not found")
+        raise HTTPException(status_code=404, detail=f"Batch not found. Available batches: {list(batches.keys())}")
     
     batch = batches[batch_id]
     print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
+    print(f"DEBUG: Batch details: {batch}")
     
     # Prepare file paths (use absolute paths)
     config_file = os.path.abspath(os.path.join(settings.config_dir, "batch_config.json"))
