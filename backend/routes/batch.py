@@ -161,6 +161,8 @@ async def get_batch(batch_id: str):
 @router.post("/{batch_id}/execute", response_model=StageExecutionResponse)
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
+    logger.info(f"Executing stage {request.stage} for batch {batch_id}")
+    
     if batch_id not in batches:
         raise HTTPException(status_code=404, detail="Batch not found")
     
@@ -169,6 +171,9 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
     # Prepare file paths (use absolute paths)
     config_file = os.path.abspath(os.path.join(settings.config_dir, "batch_config.json"))
     token_file = os.path.abspath(os.path.join(settings.config_dir, "access_token.txt"))
+    
+    logger.info(f"Config file path: {config_file}, exists: {os.path.exists(config_file)}")
+    logger.info(f"Token file path: {token_file}, exists: {os.path.exists(token_file)}")
     
     # Auto-create token file from .env if it doesn't exist
     if not os.path.exists(token_file):
@@ -263,8 +268,10 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             # Stage 1: Create products and variants
             # First, preprocess Excel to CSV if source file is Excel
             source_file = batch["source_file"]
+            logger.info(f"Source file: {source_file}")
+            
             if source_file.endswith(('.xlsx', '.xls')):
-                print(f"Preprocessing Excel file: {source_file}")
+                logger.info(f"Preprocessing Excel file: {source_file}")
                 csv_files = preprocess_excel_to_csv(os.path.join(settings.upload_dir, source_file))
                 products_csv = os.path.abspath(csv_files["products_csv"])
                 variants_new_csv = os.path.abspath(csv_files["variants_new_csv"])
@@ -274,16 +281,20 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
                 variants_new_csv = os.path.abspath(os.path.join(settings.upload_dir, "variants_new_products.csv"))
                 variants_existing_csv = os.path.abspath(os.path.join(settings.upload_dir, "variants_existing_products.csv"))
             
+            logger.info(f"Products CSV: {products_csv}, exists: {os.path.exists(products_csv)}")
+            logger.info(f"Variants New CSV: {variants_new_csv}, exists: {os.path.exists(variants_new_csv)}")
+            logger.info(f"Variants Existing CSV: {variants_existing_csv}, exists: {os.path.exists(variants_existing_csv)}")
+            
             if not all(os.path.exists(f) for f in [products_csv, variants_new_csv]):
                 raise HTTPException(status_code=400, detail="Required CSV files not found")
             
-            print(f"Executing Stage 1 with files:")
-            print(f"  Config: {config_file}")
-            print(f"  Token: {token_file}")
-            print(f"  Products CSV: {products_csv}")
-            print(f"  Variants New CSV: {variants_new_csv}")
-            print(f"  Variants Existing CSV: {variants_existing_csv}")
-            print(f"  Dry run: {request.dry_run}")
+            logger.info(f"Executing Stage 1 with files:")
+            logger.info(f"  Config: {config_file}")
+            logger.info(f"  Token: {token_file}")
+            logger.info(f"  Products CSV: {products_csv}")
+            logger.info(f"  Variants New CSV: {variants_new_csv}")
+            logger.info(f"  Variants Existing CSV: {variants_existing_csv}")
+            logger.info(f"  Dry run: {request.dry_run}")
             
             try:
                 result = await executor.execute_stage1(
@@ -295,7 +306,7 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
                     dry_run=request.dry_run
                 )
                 
-                print(f"Stage 1 result: {result}")
+                logger.info(f"Stage 1 result: {result}")
                 
                 if result["success"]:
                     batch["status"] = BatchStatus.STAGE1_COMPLETED
@@ -305,7 +316,7 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
                     batch["error_message"] += f" - Return code: {result.get('return_code', 'unknown')}"
                     batch["error_message"] += f" - Stderr: {result.get('stderr', '')[:200]}"
             except Exception as e:
-                print(f"Exception during Stage 1 execution: {str(e)}")
+                logger.error(f"Exception during Stage 1 execution: {str(e)}", exc_info=True)
                 batch["status"] = BatchStatus.FAILED
                 batch["error_message"] = f"Exception: {str(e)}"
         
