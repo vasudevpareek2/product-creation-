@@ -167,17 +167,21 @@ async def get_batch(batch_id: str):
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
     try:
+        print(f"DEBUG: ===== EXECUTE STAGE START =====")
         print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
         print(f"DEBUG: Dry run: {request.dry_run}")
         print(f"DEBUG: Available batches: {list(batches.keys())}")
+        print(f"DEBUG: Batches dict size: {len(batches)}")
         
         if batch_id not in batches:
             print(f"DEBUG: Batch {batch_id} not found in batches")
-            raise HTTPException(status_code=404, detail=f"Batch not found. Available batches: {list(batches.keys())}")
+            print(f"DEBUG: This is likely due to server restart wiping in-memory storage")
+            raise HTTPException(status_code=404, detail=f"Batch not found. Available batches: {list(batches.keys())}. Please create a new batch - the previous batch was lost due to server restart.")
         
         batch = batches[batch_id]
         print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
-        print(f"DEBUG: Batch details: {batch}")
+        print(f"DEBUG: Batch has results: {batch.get('results') is not None}")
+        print(f"DEBUG: Batch details keys: {batch.keys()}")
     except HTTPException:
         raise
     except Exception as e:
@@ -341,6 +345,8 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             # Stage 2: Enrich batch
             print(f"DEBUG: Starting Stage 2 execution")
             print(f"DEBUG: Current batch status: {batch['status']}")
+            print(f"DEBUG: Batch has results: {batch.get('results') is not None}")
+            print(f"DEBUG: Batch results type: {type(batch.get('results'))}")
             
             if batch["status"] != BatchStatus.STAGE1_COMPLETED:
                 print(f"DEBUG: Stage 1 not completed, current status: {batch['status']}")
@@ -354,8 +360,11 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
                 print(f"DEBUG: Enrichment plan not found, checking if Stage 1 had any successful products")
                 # Access stage1_results from the last execution
                 last_result = batch.get("results", {})
+                print(f"DEBUG: Last result: {last_result}")
                 stage1_results = last_result.get("results", {}).get("stage1_results", []) if isinstance(last_result, dict) else []
+                print(f"DEBUG: Stage 1 results: {len(stage1_results)} items")
                 successful_products = [r for r in stage1_results if r.get("status") == "completed" or r.get("url")]
+                print(f"DEBUG: Successful products: {len(successful_products)}")
                 
                 if not successful_products:
                     print(f"DEBUG: No successful products in Stage 1, cannot proceed with Stage 2")
