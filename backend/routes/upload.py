@@ -24,11 +24,14 @@ class TokenUploadRequest(BaseModel):
 async def upload_csv(file: UploadFile = File(...)):
     """Upload a CSV file for processing"""
 
+    logger.info(f"Received CSV upload request: {file.filename}")
+
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed")
 
     # Ensure upload directory exists
     os.makedirs(settings.upload_dir, exist_ok=True)
+    logger.info(f"Upload directory: {settings.upload_dir}, exists: {os.path.exists(settings.upload_dir)}")
 
     # Generate unique filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -37,12 +40,15 @@ async def upload_csv(file: UploadFile = File(...)):
 
     # Save file
     try:
+        logger.info(f"Saving file to: {file_path}")
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
+        logger.info(f"File saved successfully: {file_path}")
 
         # Validate CSV structure if pandas is available
         if PANDAS_AVAILABLE:
             try:
+                logger.info(f"Reading CSV file with pandas...")
                 df = pd.read_csv(file_path)
                 logger.info(f"Uploaded CSV file: {filename}, Shape: {df.shape}")
 
@@ -59,12 +65,13 @@ async def upload_csv(file: UploadFile = File(...)):
                 }
             except Exception as e:
                 # If CSV parsing fails, delete the file and return error
+                logger.error(f"CSV parsing error: {str(e)}")
                 if os.path.exists(file_path):
                     os.remove(file_path)
                 raise HTTPException(status_code=400, detail=f"Invalid CSV file: {str(e)}")
         else:
             # Without pandas, just confirm file upload
-            logger.info(f"Uploaded CSV file (pandas not available): {filename}")
+            logger.warning(f"pandas not available, basic validation only")
             return {
                 "message": "File uploaded successfully (basic validation only)",
                 "filename": filename,
@@ -73,18 +80,21 @@ async def upload_csv(file: UploadFile = File(...)):
             }
 
     except Exception as e:
-        logger.error(f"Error uploading file: {str(e)}")
+        logger.error(f"Error uploading file: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
 
 @router.post("/excel")
 async def upload_excel(file: UploadFile = File(...)):
     """Upload an Excel file for processing"""
 
+    logger.info(f"Received Excel upload request: {file.filename}")
+
     if not (file.filename.endswith('.xlsx') or file.filename.endswith('.xls')):
         raise HTTPException(status_code=400, detail="Only Excel files are allowed")
 
     # Ensure upload directory exists
     os.makedirs(settings.upload_dir, exist_ok=True)
+    logger.info(f"Upload directory: {settings.upload_dir}, exists: {os.path.exists(settings.upload_dir)}")
 
     # Generate unique filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -93,12 +103,15 @@ async def upload_excel(file: UploadFile = File(...)):
 
     # Save file
     try:
+        logger.info(f"Saving file to: {file_path}")
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
+        logger.info(f"File saved successfully: {file_path}")
 
         # Validate Excel structure if pandas is available
         if PANDAS_AVAILABLE:
             try:
+                logger.info(f"Reading Excel file with pandas...")
                 df = pd.read_excel(file_path)
                 logger.info(f"Uploaded Excel file: {filename}, Shape: {df.shape}")
 
@@ -115,12 +128,13 @@ async def upload_excel(file: UploadFile = File(...)):
                 }
             except Exception as e:
                 # If Excel parsing fails, delete the file and return error
+                logger.error(f"Excel parsing error: {str(e)}")
                 if os.path.exists(file_path):
                     os.remove(file_path)
                 raise HTTPException(status_code=400, detail=f"Invalid Excel file: {str(e)}")
         else:
             # Without pandas, just confirm file upload
-            logger.info(f"Uploaded Excel file (pandas not available): {filename}")
+            logger.warning(f"pandas not available, basic validation only")
             return {
                 "message": "File uploaded successfully (basic validation only)",
                 "filename": filename,
@@ -129,7 +143,7 @@ async def upload_excel(file: UploadFile = File(...)):
             }
 
     except Exception as e:
-        logger.error(f"Error uploading file: {str(e)}")
+        logger.error(f"Error uploading file: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
 
 @router.post("/config")
