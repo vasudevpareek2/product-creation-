@@ -3,18 +3,19 @@ services:
     name: product-creation-backend
     runtime: python
     plan: free
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: python backend/start_backend.py
+    workingDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python start_backend.py
     envVars:
       - key: PORT
         value: 8000
       - key: CORS_ORIGINS
         value: "*"
       - key: UPLOAD_DIR
-        value: "backend/uploads"
+        value: "uploads"
       - key: CONFIG_DIR
-        value: "backend/config"
+        value: "config"
       - key: LOG_DIR
-        value: "backend/logs"
+        value: "logs"
     region: oregon
     healthCheckPath: /docs
