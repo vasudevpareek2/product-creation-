@@ -164,20 +164,13 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
     print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
     logger.info(f"Executing stage {request.stage} for batch {batch_id}")
     
-    try:
-        if batch_id not in batches:
-            print(f"DEBUG: Batch {batch_id} not found in batches")
-            logger.error(f"Batch {batch_id} not found in batches")
-            raise HTTPException(status_code=404, detail="Batch not found")
-        
-        batch = batches[batch_id]
-        print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"DEBUG: Unexpected error in execute_stage: {str(e)}")
-        logger.error(f"Unexpected error in execute_stage: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
+    if batch_id not in batches:
+        print(f"DEBUG: Batch {batch_id} not found in batches")
+        logger.error(f"Batch {batch_id} not found in batches")
+        raise HTTPException(status_code=404, detail="Batch not found")
+    
+    batch = batches[batch_id]
+    print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
     
     # Wrap the entire function body in try-catch for better error handling
     try:
