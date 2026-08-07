@@ -493,6 +493,9 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             results=result
         )
         
+    except HTTPException:
+        # Let HTTPException propagate as-is (400, 404, etc.)
+        raise
     except Exception as e:
         logger.error(f"Error executing stage {request.stage} for batch {batch_id}: {str(e)}")
         batch["status"] = BatchStatus.FAILED
