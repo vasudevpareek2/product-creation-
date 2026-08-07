@@ -161,12 +161,26 @@ async def get_batch(batch_id: str):
 @router.post("/{batch_id}/execute", response_model=StageExecutionResponse)
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
+    print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
     logger.info(f"Executing stage {request.stage} for batch {batch_id}")
     
-    if batch_id not in batches:
-        raise HTTPException(status_code=404, detail="Batch not found")
+    try:
+        if batch_id not in batches:
+            print(f"DEBUG: Batch {batch_id} not found in batches")
+            logger.error(f"Batch {batch_id} not found in batches")
+            raise HTTPException(status_code=404, detail="Batch not found")
+        
+        batch = batches[batch_id]
+        print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"DEBUG: Unexpected error in execute_stage: {str(e)}")
+        logger.error(f"Unexpected error in execute_stage: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
     
-    batch = batches[batch_id]
+    # Wrap the entire function body in try-catch for better error handling
+    try:
     
     # Prepare file paths (use absolute paths)
     config_file = os.path.abspath(os.path.join(settings.config_dir, "batch_config.json"))
@@ -257,11 +271,14 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
     
     # Verify files exist
     if not os.path.exists(config_file):
+        print(f"DEBUG: Config file not found: {config_file}")
         raise HTTPException(status_code=400, detail="Config file not found. Please upload a configuration file.")
     if not os.path.exists(token_file):
+        print(f"DEBUG: Token file not found: {token_file}")
         raise HTTPException(status_code=400, detail="Token file not found. Please save your token in the .env file or use the Token Capture page.")
     
     started_at = datetime.now()
+    print(f"DEBUG: Starting stage execution at {started_at}")
     
     try:
         if request.stage == 1:
@@ -439,13 +456,16 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             results=result
         )
         
+    except HTTPException:
+        raise
     except Exception as e:
-        logger.error(f"Error executing stage {request.stage} for batch {batch_id}: {str(e)}")
+        print(f"DEBUG: Error executing stage {request.stage} for batch {batch_id}: {str(e)}")
+        logger.error(f"Error executing stage {request.stage} for batch {batch_id}: {str(e)}", exc_info=True)
         batch["status"] = BatchStatus.FAILED
         batch["error_message"] = str(e)
         batch["updated_at"] = datetime.now().isoformat()
         
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Error executing stage: {str(e)}")
 
 @router.delete("/{batch_id}")
 async def delete_batch(batch_id: str):
