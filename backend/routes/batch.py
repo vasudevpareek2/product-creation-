@@ -172,9 +172,6 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
     batch = batches[batch_id]
     print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
     
-    # Wrap the entire function body in try-catch for better error handling
-    try:
-    
     # Prepare file paths (use absolute paths)
     config_file = os.path.abspath(os.path.join(settings.config_dir, "batch_config.json"))
     token_file = os.path.abspath(os.path.join(settings.config_dir, "access_token.txt"))
@@ -448,17 +445,6 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             completed_at=completed_at,
             results=result
         )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        print(f"DEBUG: Error executing stage {request.stage} for batch {batch_id}: {str(e)}")
-        logger.error(f"Error executing stage {request.stage} for batch {batch_id}: {str(e)}", exc_info=True)
-        batch["status"] = BatchStatus.FAILED
-        batch["error_message"] = str(e)
-        batch["updated_at"] = datetime.now().isoformat()
-        
-        raise HTTPException(status_code=500, detail=f"Error executing stage: {str(e)}")
 
 @router.delete("/{batch_id}")
 async def delete_batch(batch_id: str):
