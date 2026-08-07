@@ -1,13 +1,23 @@
+import sys
+import asyncio
+import os
+
+# Change to backend directory to ensure relative imports work
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(backend_dir)
+
+# Set event loop policy BEFORE any imports (for Windows compatibility)
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 from fastapi import FastAPI, UploadFile, File, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
-import os
 import json
 from datetime import datetime
 from typing import List
 import uuid
-import asyncio
 import time
 import logging
 

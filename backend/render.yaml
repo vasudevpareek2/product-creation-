@@ -4,19 +4,17 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python backend/start_backend.py
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port 8000
     envVars:
       - key: PORT
         value: 8000
       - key: CORS_ORIGINS
         value: "*"
       - key: UPLOAD_DIR
-        value: "backend/uploads"
+        value: "uploads"
       - key: CONFIG_DIR
-        value: "backend/config"
+        value: "config"
       - key: LOG_DIR
-        value: "backend/logs"
-      - key: PYTHONPATH
-        value: "/opt/render/project/src/backend"
+        value: "logs"
     region: oregon
     healthCheckPath: /docs
