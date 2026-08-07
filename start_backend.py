@@ -4,9 +4,12 @@ Wrapper script to start backend from root directory
 """
 import sys
 import os
+import subprocess
 
-# Change to backend directory
-os.chdir('backend')
-
-# Execute the real start script
-exec(open('start_backend.py').read())
+# Run uvicorn from backend directory
+subprocess.run([
+    sys.executable, '-m', 'uvicorn', 
+    'backend.main:app',
+    '--host', '0.0.0.0',
+    '--port', '8000'
+])
