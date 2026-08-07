@@ -26,7 +26,9 @@ class ScriptExecutor:
         dry_run: bool = True
     ) -> Dict[str, Any]:
         """Execute create_products_and_variants.py"""
+        print(f"DEBUG: execute_stage1 called with dry_run={dry_run}")
         script_path = os.path.join(self.scripts_dir, "create_products_and_variants.py")
+        print(f"DEBUG: Script path: {script_path}")
         
         cmd = [
             "python", script_path,
@@ -40,6 +42,7 @@ class ScriptExecutor:
         if not dry_run:
             cmd.append("--execute")
         
+        print(f"DEBUG: Command: {' '.join(cmd)}")
         return await self._execute_command(cmd, "stage1")
     
     async def execute_stage2(

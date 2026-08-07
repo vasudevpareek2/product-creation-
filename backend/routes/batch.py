@@ -162,6 +162,7 @@ async def get_batch(batch_id: str):
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
     print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
+    print(f"DEBUG: Dry run: {request.dry_run}")
     print(f"DEBUG: Available batches: {list(batches.keys())}")
     
     if batch_id not in batches:
