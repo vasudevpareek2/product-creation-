@@ -23,29 +23,32 @@ class TokenUploadRequest(BaseModel):
 @router.post("/csv")
 async def upload_csv(file: UploadFile = File(...)):
     """Upload a CSV file for processing"""
-    
+
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed")
-    
+
+    # Ensure upload directory exists
+    os.makedirs(settings.upload_dir, exist_ok=True)
+
     # Generate unique filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{timestamp}_{file.filename}"
     file_path = os.path.join(settings.upload_dir, filename)
-    
+
     # Save file
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
+
         # Validate CSV structure if pandas is available
         if PANDAS_AVAILABLE:
             try:
                 df = pd.read_csv(file_path)
                 logger.info(f"Uploaded CSV file: {filename}, Shape: {df.shape}")
-                
+
                 # Convert NaN to None for JSON serialization
                 df_clean = df.replace({float('nan'): None})
-                
+
                 return {
                     "message": "File uploaded successfully",
                     "filename": filename,
@@ -56,7 +59,8 @@ async def upload_csv(file: UploadFile = File(...)):
                 }
             except Exception as e:
                 # If CSV parsing fails, delete the file and return error
-                os.remove(file_path)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
                 raise HTTPException(status_code=400, detail=f"Invalid CSV file: {str(e)}")
         else:
             # Without pandas, just confirm file upload
@@ -67,37 +71,40 @@ async def upload_csv(file: UploadFile = File(...)):
                 "file_path": file_path,
                 "note": "Install pandas for full CSV validation"
             }
-            
+
     except Exception as e:
         logger.error(f"Error uploading file: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
 
 @router.post("/excel")
 async def upload_excel(file: UploadFile = File(...)):
     """Upload an Excel file for processing"""
-    
+
     if not (file.filename.endswith('.xlsx') or file.filename.endswith('.xls')):
         raise HTTPException(status_code=400, detail="Only Excel files are allowed")
-    
+
+    # Ensure upload directory exists
+    os.makedirs(settings.upload_dir, exist_ok=True)
+
     # Generate unique filename
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"{timestamp}_{file.filename}"
     file_path = os.path.join(settings.upload_dir, filename)
-    
+
     # Save file
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
+
         # Validate Excel structure if pandas is available
         if PANDAS_AVAILABLE:
             try:
                 df = pd.read_excel(file_path)
                 logger.info(f"Uploaded Excel file: {filename}, Shape: {df.shape}")
-                
+
                 # Convert NaN to None for JSON serialization
                 df_clean = df.replace({float('nan'): None})
-                
+
                 return {
                     "message": "File uploaded successfully",
                     "filename": filename,
@@ -108,7 +115,8 @@ async def upload_excel(file: UploadFile = File(...)):
                 }
             except Exception as e:
                 # If Excel parsing fails, delete the file and return error
-                os.remove(file_path)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
                 raise HTTPException(status_code=400, detail=f"Invalid Excel file: {str(e)}")
         else:
             # Without pandas, just confirm file upload
@@ -119,35 +127,38 @@ async def upload_excel(file: UploadFile = File(...)):
                 "file_path": file_path,
                 "note": "Install pandas for full Excel validation"
             }
-            
+
     except Exception as e:
         logger.error(f"Error uploading file: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
 
 @router.post("/config")
 async def upload_config(file: UploadFile = File(...)):
     """Upload a configuration file"""
-    
+
     if not file.filename.endswith('.json'):
         raise HTTPException(status_code=400, detail="Only JSON files are allowed")
-    
+
+    # Ensure config directory exists
+    os.makedirs(settings.config_dir, exist_ok=True)
+
     # Save as batch_config.json
     file_path = os.path.join(settings.config_dir, "batch_config.json")
-    
+
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
+
         logger.info(f"Uploaded config file: batch_config.json")
-        
+
         return {
             "message": "Configuration file uploaded successfully",
             "file_path": file_path
         }
-        
+
     except Exception as e:
         logger.error(f"Error uploading config: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Error uploading config: {str(e)}")
 
 @router.post("/token")
 async def upload_token(request: TokenUploadRequest):

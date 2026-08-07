@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 from typing import List
 import uuid
+import asyncio
 
 from config import settings
 from routes import batch, config, ai, upload, token
@@ -33,6 +34,16 @@ manager = ConnectionManager()
 async def lifespan(app: FastAPI):
     # Startup
     print("🚀 Starting Product Creation Web App")
+
+    # Ensure required directories exist
+    os.makedirs(settings.upload_dir, exist_ok=True)
+    os.makedirs(settings.config_dir, exist_ok=True)
+    os.makedirs(settings.log_dir, exist_ok=True)
+
+    print(f"✅ Upload directory: {settings.upload_dir}")
+    print(f"✅ Config directory: {settings.config_dir}")
+    print(f"✅ Log directory: {settings.log_dir}")
+
     yield
     # Shutdown
     print("👋 Shutting down Product Creation Web App")
@@ -95,7 +106,15 @@ async def health_check():
             "thrillo_base_url": settings.thrillo_base_url,
             "thrillo_client_id": settings.thrillo_client_id,
             "has_claude_api": bool(settings.anthropic_api_key),
-        "cors_origins": settings.cors_origins_list
+            "cors_origins": settings.cors_origins_list
+        },
+        "directories": {
+            "upload_dir": settings.upload_dir,
+            "upload_dir_exists": os.path.exists(settings.upload_dir),
+            "config_dir": settings.config_dir,
+            "config_dir_exists": os.path.exists(settings.config_dir),
+            "log_dir": settings.log_dir,
+            "log_dir_exists": os.path.exists(settings.log_dir)
         }
     }
 
