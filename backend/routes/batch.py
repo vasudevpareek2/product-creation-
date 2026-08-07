@@ -269,6 +269,15 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
             # Stage 1: Create products and variants
             # First, preprocess Excel to CSV if source file is Excel
             source_file = batch["source_file"]
+            
+            # Remove directory prefix if present to avoid double path issue
+            if source_file.startswith(settings.upload_dir + os.sep):
+                source_file = source_file[len(settings.upload_dir) + len(os.sep):]
+            elif source_file.startswith(settings.upload_dir + "/"):
+                source_file = source_file[len(settings.upload_dir) + 1:]
+            
+            print(f"DEBUG: Source file after path cleanup: {source_file}")
+            
             if source_file.endswith(('.xlsx', '.xls')):
                 print(f"Preprocessing Excel file: {source_file}")
                 csv_files = preprocess_excel_to_csv(os.path.join(settings.upload_dir, source_file))

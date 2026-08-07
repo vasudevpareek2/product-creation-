@@ -58,7 +58,7 @@ async def upload_csv(file: UploadFile = File(...)):
                 return {
                     "message": "File uploaded successfully",
                     "filename": filename,
-                    "file_path": file_path,
+                    "file_path": filename,  # Return just filename, not full path
                     "rows": len(df),
                     "columns": list(df.columns),
                     "preview": df_clean.head(3).to_dict(orient="records")
@@ -75,7 +75,7 @@ async def upload_csv(file: UploadFile = File(...)):
             return {
                 "message": "File uploaded successfully (basic validation only)",
                 "filename": filename,
-                "file_path": file_path,
+                "file_path": filename,  # Return just filename, not full path
                 "note": "Install pandas for full CSV validation"
             }
 
@@ -121,7 +121,7 @@ async def upload_excel(file: UploadFile = File(...)):
                 return {
                     "message": "File uploaded successfully",
                     "filename": filename,
-                    "file_path": file_path,
+                    "file_path": filename,  # Return just filename, not full path
                     "rows": len(df),
                     "columns": list(df.columns),
                     "preview": df_clean.head(3).to_dict(orient="records")
