@@ -326,14 +326,20 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
         
         elif request.stage == 2:
             # Stage 2: Enrich batch
+            print(f"DEBUG: Starting Stage 2 execution")
+            print(f"DEBUG: Current batch status: {batch['status']}")
+            
             if batch["status"] != BatchStatus.STAGE1_COMPLETED:
+                print(f"DEBUG: Stage 1 not completed, current status: {batch['status']}")
                 raise HTTPException(status_code=400, detail="Stage 1 must be completed first")
             
             enrichment_plan = os.path.join(settings.upload_dir, "enrichment_plan.json")
+            print(f"DEBUG: Enrichment plan path: {enrichment_plan}, exists: {os.path.exists(enrichment_plan)}")
             
             # Update enrichment plan with actual product codes from Stage 1 results
             try:
                 stage1_results = batch.get("stage1_results", [])
+                print(f"DEBUG: Stage 1 results: {len(stage1_results)} items")
                 if stage1_results:
                     print("Updating enrichment plan with actual product codes from Stage 1...")
                     import subprocess
@@ -355,6 +361,7 @@ async def execute_stage(batch_id: str, request: StageExecutionRequest):
                 print(f"Warning: Could not update enrichment plan: {str(e)}")
             
             if not os.path.exists(enrichment_plan):
+                print(f"DEBUG: Enrichment plan not found at {enrichment_plan}")
                 raise HTTPException(status_code=400, detail="Enrichment plan not found")
             
             # Generate enrichment plan if it doesn't exist or is empty
