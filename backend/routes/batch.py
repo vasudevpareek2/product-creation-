@@ -127,6 +127,9 @@ def preprocess_excel_to_csv(excel_file: str) -> Dict[str, str]:
 async def create_batch(batch: BatchCreate):
     """Create a new batch"""
     batch_id = str(uuid.uuid4())
+    print(f"DEBUG: Creating batch {batch_id} with name: {batch.name}")
+    print(f"DEBUG: Source file: {batch.source_file}")
+    print(f"DEBUG: Current batches before creation: {list(batches.keys())}")
     
     new_batch = {
         "id": batch_id,
@@ -142,6 +145,8 @@ async def create_batch(batch: BatchCreate):
     }
     
     batches[batch_id] = new_batch
+    print(f"DEBUG: Added batch {batch_id} to batches dict")
+    print(f"DEBUG: Current batches after creation: {list(batches.keys())}")
     logger.info(f"Created batch {batch_id}: {batch.name}")
     
     return BatchResponse(**new_batch)
