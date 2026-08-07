@@ -8,9 +8,15 @@ from datetime import datetime
 from typing import List
 import uuid
 import asyncio
+import time
+import logging
 
 from config import settings
 from routes import batch, config, ai, upload, token
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Global connection manager for WebSocket
 class ConnectionManager:
@@ -63,6 +69,23 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Add middleware to log all requests
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start_time = time.time()
+    logger.info(f"REQUEST: {request.method} {request.url.path}")
+    logger.info(f"Headers: {dict(request.headers)}")
+    
+    try:
+        response = await call_next(request)
+        process_time = time.time() - start_time
+        logger.info(f"RESPONSE: {response.status_code} - {process_time:.3f}s")
+        return response
+    except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(f"ERROR: {str(e)} - {process_time:.3f}s", exc_info=True)
+        raise
 
 # Include routers
 app.include_router(batch.router, prefix="/api/batch", tags=["batch"])
