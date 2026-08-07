@@ -161,17 +161,24 @@ async def get_batch(batch_id: str):
 @router.post("/{batch_id}/execute", response_model=StageExecutionResponse)
 async def execute_stage(batch_id: str, request: StageExecutionRequest):
     """Execute a specific stage of the batch workflow"""
-    print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
-    print(f"DEBUG: Dry run: {request.dry_run}")
-    print(f"DEBUG: Available batches: {list(batches.keys())}")
-    
-    if batch_id not in batches:
-        print(f"DEBUG: Batch {batch_id} not found in batches")
-        raise HTTPException(status_code=404, detail=f"Batch not found. Available batches: {list(batches.keys())}")
-    
-    batch = batches[batch_id]
-    print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
-    print(f"DEBUG: Batch details: {batch}")
+    try:
+        print(f"DEBUG: Received execute_stage request for batch {batch_id}, stage {request.stage}")
+        print(f"DEBUG: Dry run: {request.dry_run}")
+        print(f"DEBUG: Available batches: {list(batches.keys())}")
+        
+        if batch_id not in batches:
+            print(f"DEBUG: Batch {batch_id} not found in batches")
+            raise HTTPException(status_code=404, detail=f"Batch not found. Available batches: {list(batches.keys())}")
+        
+        batch = batches[batch_id]
+        print(f"DEBUG: Found batch {batch_id} with status {batch.get('status')}")
+        print(f"DEBUG: Batch details: {batch}")
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"DEBUG: Error in execute_stage initial setup: {str(e)}")
+        logger.error(f"Error in execute_stage initial setup: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Error in execute_stage: {str(e)}")
     
     # Prepare file paths (use absolute paths)
     config_file = os.path.abspath(os.path.join(settings.config_dir, "batch_config.json"))
