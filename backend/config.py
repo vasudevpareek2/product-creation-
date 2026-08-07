@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     # Application
     app_host: str = "0.0.0.0"
     app_port: int = 8000
-    cors_origins: str = "http://localhost:3000,http://localhost:3001,https://product-creation-frontend.onrender.com,https://product-creation-ou2z.onrender.com"
+    cors_origins: str = "*"
     
     # Directories
     upload_dir: str = "uploads"
