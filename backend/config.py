@@ -32,6 +32,15 @@ class Settings(BaseSettings):
         """Parse CORS origins from comma-separated string"""
         if isinstance(self.cors_origins, list):
             return self.cors_origins
+
+        # Handle wildcard
+        if self.cors_origins.strip() == "*":
+            return ["*"]
+
+        # Handle quoted wildcard
+        if self.cors_origins.strip() == '"*"':
+            return ["*"]
+
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
     
     class Config:
