@@ -94,6 +94,11 @@ _token_file_arg = next((a.split("=", 1)[1] if "=" in a else sys.argv[i + 1]
 if _token_file_arg:
     with open(_token_file_arg, encoding="utf-8") as _f:
         ACCESS_TOKEN = _f.read().strip()
+    print(f"DEBUG: Token loaded from file: {_token_file_arg}")
+    print(f"DEBUG: Token length: {len(ACCESS_TOKEN)}")
+    print(f"DEBUG: Token preview: {ACCESS_TOKEN[:20]}...{ACCESS_TOKEN[-20:]}")
+else:
+    print(f"DEBUG: Using environment token, length: {len(ACCESS_TOKEN)}")
 # ======================================================================
 
 RESULTS_LOG_CSV = "results_log.csv"
