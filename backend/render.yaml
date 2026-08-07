@@ -4,7 +4,7 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: cd backend && python start_backend.py
+    startCommand: python backend/start_backend.py
     envVars:
       - key: PORT
         value: 8000
@@ -16,5 +16,7 @@ services:
         value: "backend/config"
       - key: LOG_DIR
         value: "backend/logs"
+      - key: PYTHONPATH
+        value: "/opt/render/project/src/backend"
     region: oregon
     healthCheckPath: /docs
